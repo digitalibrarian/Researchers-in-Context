@@ -2,5 +2,51 @@
 -- Chlöe Brew, Taylor Hazan, Amanda Mitchel, Fer Palomares Carranco, Jet To
 
 -- create database
+
+CREATE DATABASE "ResearchersInContext";
+GO
+
 -- create tables
+
+CREATE TABLE ric.researcher
+CREATE TABLE ric.researcharea
+CREATE TABLE ric.discipline
+CREATE TABLE ric.subdiscipline
+CREATE TABLE ric.subjectarea
+
+CREATE TABLE ric.institution
+CREATE TABLE ric.degree
+CREATE TABLE ric.position
+CREATE TABLE ric.funding
+CREATE TABLE ric.membership
+CREATE TABLE ric.recognition
+CREATE TABLE ric.course
+
+CREATE TABLE ric.publisher
+CREATE TABLE ric.book
+CREATE TABLE ric.researcherbook
+
+CREATE TABLE ric.journal
+CREATE TABLE ric.journalarticle
+CREATE TABLE ric.researcher article
+CREATE TABLE ric.articlekeyterms
+CREATE TABLE ric.journalpublisher
+
+
+CREATE TABLE ric.conference
+CREATE TABLE ric.conferenceactivity
+CREATE TABLE ric.researcherconferenceactivity
+
+CREATE TABLE ric.mediaappearance
+CREATE TABLE ric.researchermediaappearance
+CREATE TABLE ric.mediapublisher
+
+CREATE TABLE ric.communityengagement
+CREATE TABLE ric.researchercommunityengagement
+CREATE TABLE ric.communitypartner
+CREATE TABLE ric.communitypartnership
+
+
+
+
 -- insert data? 
