@@ -24,7 +24,10 @@ CREATE TABLE ric.mediapublisher
 CREATE TABLE ric.communitypartner 
 CREATE TABLE ric.communityengagement
 CREATE TABLE ric.conferenceactivity
+CREATE TABLE ric.journalarticle
+CREATE TABLE ric.journalpublication
 
+---??
 CREATE TABLE ric.researcharea
 CREATE TABLE ric.discipline
 CREATE TABLE ric.subdiscipline
@@ -34,20 +37,12 @@ CREATE TABLE ric.subjectarea
 
 CREATE TABLE ric.course
 CREATE TABLE ric.researcherbook
-
-
-CREATE TABLE ric.journalarticle
 CREATE TABLE ric.researcher article
 CREATE TABLE ric.articlekeyterms
-CREATE TABLE ric.journalpublication
-
-
 CREATE TABLE ric.researcherconferenceactivity
 CREATE TABLE ric.researchermediaappearance
 CREATE TABLE ric.researchercommunityengagement
 CREATE TABLE ric.communitypartnership
-
-
 
 
 -- insert data? 
