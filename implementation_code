@@ -8,7 +8,7 @@ GO
 
 -- create parent tables
 
-CREATE TABLE ric.researcher (
+CREATE TABLE researcher.researcher (
 ResearcherID INT PRIMARY KEY; 
 ResearcherOrcid ID INT; 
 ResearcherFirstName VARCHAR (40) NOT NULL; 
@@ -19,16 +19,7 @@ ResearcherEmail VARCHAR (40) NOT NULL;
 ResearcherWebsite VARCHAR (100)
 );
 
-CREATE TABLE ric.institution (
-InstitutionID INT PRIMARY KEY; 
-InstitutionType VARCHAR (40) NOT NULL; 
-InstitutionName VARCHAR (60) NOT NULL; 
-City VARCHAR (40) NOT NULL; 
-State/Territory VARCHAR (40) NOT NULL; 
-Country VARCHAR (40) NOT NULL
-);
-
-CREATE TABLE ric.degree (
+CREATE TABLE researcher.degree (
 DegreeID INT PRIMARY KEY; 
 ResearcherID INT NOT NULL
 REFERENCES ric.researcher(ResearcherID); 
@@ -38,164 +29,157 @@ GraduationDate DATE NOT NULL;
 DegreeLevel VARCHAR (40) NOT NULL; 
 DegreeDiscipline VARCHAR (60) NOT NULL
 );
-
-CREATE TABLE ric.position (
+CREATE TABLE researcher.position (
 PositionID INT PRIMARY KEY; 
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 PositionTitle VARCHAR (40) NOT NULL;
 PositionType VARCHAR (40) NOT NULL; 
 PositionStartDate DATE NOT NULL; 
 PositionEndDate DATE 
 );
-
-CREATE TABLE ric.funding (
+CREATE TABLE researcher.funding (
 FundingID INT PRIMARY KEY; 
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES instituion.institution(InstitutionID);
 FundingName VARCHAR (100) NOT NULL; 
 FundingStartDate DATE NOT NULL; 
 FundingEndDate DATE; 
 FundingAmount MONEY NOT NULL
 );
-
-CREATE TABLE ric.membership (
+CREATE TABLE researcher.membership (
 MembershipID INT PRIMARY KEY; 
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 Organization/AssociationName VARCHAR (100); 
 MembershipPositionTitle VARCHAR (40) NOT NULL;
 MembershipStartDate DATE NOT NULL;
 MembershipEndDate Date
 );
-
-CREATE TABLE ric.recognition (
+CREATE TABLE researcher.recognition (
 RecognitionID INT PRIMARY KEY;
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 RecognitionSource INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 RecognitionName VARCHAR (100) NOT NULL
 );
+CREATE TABLE ric.discipline
+CREATE TABLE ric.subdiscipline
+CREATE TABLE ric.subjectarea
 
-CREATE TABLE ric.publisher (
+CREATE TABLE institution.institution (
+InstitutionID INT PRIMARY KEY; 
+InstitutionType VARCHAR (40) NOT NULL; 
+InstitutionName VARCHAR (60) NOT NULL; 
+City VARCHAR (40) NOT NULL; 
+State/Territory VARCHAR (40) NOT NULL; 
+Country VARCHAR (40) NOT NULL
+);
+CREATE TABLE institution.publisher (
 PublisherID INT PRIMARY KEY;
 InstitutionID INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 PublisherName VARCHAR (100) NOT NULL
 );
-
-CREATE TABLE ric.book (
-BookID INT PRIMARY KEY;
-BookTitle VARCHAR (100) NOT NULL;
-BookPublicationYear DATE NOT NULL;
-PublisherID INT NOT NULL
-REFERENCES ric.publisher(PublisherID)
-);
-
-CREATE TABLE ric.journal (
+CREATE TABLE institution.journal (
 JournalID INT PRIMARY KEY;
 JournalTitle VARCHAR (100) NOT NULL;
 JournalOnlineISSN INT;
 JournalPrintISSN INT;
 PublisherID INT NOT NULL
-REFERENCES ric.publisher(PublisherID)
+REFERENCES institution.publisher(PublisherID)
 );
-
-CREATE TABLE ric.conference (
+CREATE TABLE institution.conference (
 ConferenceID INT PRIMARY KEY;
 ConferenceName VARCHAR (100) NOT NULL;
 PrimaryConferenceOrganizer INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 ConferenceStartDate DATE NOT NULL;
 ConferenceEndDate DATE NOT NULL;
 ConferenceLocation VARCHAR (100) NOT NULL
 );
+CREATE TABLE institution.mediapublisher (
+MediaPublisherID INT PRIMARY KEY;
+MediaPublisherName VARCHAR (60) NOT NULL;
+MediaPublisherType VARCHAR (40) NOT NULL;
+InstitutionID INT 
+REFERENCES researcher.institution(InstitutionID)
+);
+CREATE TABLE institution.communitypartner (
+CommunityPartnerID INT PRIMARY KEY;
+InstitutionID INT 
+REFERENCES institution.institution(InstitutionID);
+CommunityPartnerName VARCHAR (100) NOT NULL;
+CommunityPartnerDescription VARCHAR (200)
+);
 
-CREATE TABLE ric.mediaappearance (
+CREATE TABLE activity.book (
+BookID INT PRIMARY KEY;
+BookTitle VARCHAR (100) NOT NULL;
+BookPublicationYear DATE NOT NULL;
+PublisherID INT NOT NULL
+REFERENCES institution.publisher(PublisherID)
+);
+CREATE TABLE activity.mediaappearance (
 MediaAppearanceID INT PRIMARY KEY;
 MediaPublisherID INT NOT NULL
-REFERENCES ric.mediapublisher(MediaPublisherID);
+REFERENCES institution.mediapublisher(MediaPublisherID);
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 MediaAppearanceType VARCHAR (40) NOT NULL;
 MediaAppearanceDate DATE NOT NULL;
 MediaAppearanceDescription VARCHAR (200);
 MediaAppearanceLink VARCHAR (100)
 );
-
-CREATE TABLE ric.mediapublisher (
-MediaPublisherID INT PRIMARY KEY;
-MediaPublisherName VARCHAR (60) NOT NULL;
-MediaPublisherType VARCHAR (40) NOT NULL;
-InstitutionID INT 
-REFERENCES ric.institution(InstitutionID)
-);
-
-CREATE TABLE ric.communitypartner (
-CommunityPartnerID INT PRIMARY KEY;
-InstitutionID INT 
-REFERENCES ric.institution(InstitutionID);
-CommunityPartnerName VARCHAR (100) NOT NULL;
-CommunityPartnerDescription VARCHAR (200)
-);
-
-CREATE TABLE ric.communityengagement (
+CREATE TABLE activity.communityengagement (
 CommunityEngagementID INT PRIMARY KEY;
 CommunityPartnerID INT 
-REFERENCES ric.communitypartner(CommunityPartnerID);
+REFERENCES institution.communitypartner(CommunityPartnerID);
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 CommunityEngagementType VARCHAR (40) NOT NULL;
 CommunityEngagementStartDate DATE NOT NULL;
 CommunityEngagementEndDate DATE;
 CommunityEngagementDescription VARCHAR (200)
 );
-
-CREATE TABLE ric.conferenceactivity (
+CREATE TABLE activity.conferenceactivity (
 ConferenceActivityID INT PRIMARY KEY;
 ConferenceID INT NOT NULL
-REFERENCES ric.conference(ConferenceID);
+REFERENCES institution.conference(ConferenceID);
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID);
+REFERENCES researcher.researcher(ResearcherID);
 ConferenceActivityType VARCHAR (40) NOT NULL;
 ConferenceActivityTitle VARCHAR (100) NOT NULL;
 ConferenceActivityDate DATE NOT NULL
 );
-
-CREATE TABLE ric.journalarticle (
+CREATE TABLE activity.journalarticle (
 ArticleID INT PRIMARY KEY;
 ArticleTitle VARCHAR (200) NOT NULL;
 ArticleDOI VARCHAR (100)
 );
-
-CREATE TABLE ric.journalpublication (
+CREATE TABLE activity.journalpublication (
 JournalPublicationID INT PRIMARY KEY;
 ArticleID INT NOT NULL
-REFERENCES ric.journalarticle(ArticleID);
+REFERENCES activity.journalarticle(ArticleID);
 JournalID INT NOT NULL
 REFERENCES ric.
 
-CREATE TABLE ric.discipline
-CREATE TABLE ric.subdiscipline
-CREATE TABLE ric.subjectarea
-
 -- create child tables
-CREATE TABLE ric.researcharea
-CREATE TABLE ric.course
-CREATE TABLE ric.researcherbook
-CREATE TABLE ric.researcher article
-CREATE TABLE ric.articlekeyterms
-CREATE TABLE ric.researcherconferenceactivity
-CREATE TABLE ric.researchermediaappearance
-CREATE TABLE ric.researchercommunityengagement
-CREATE TABLE ric.communitypartnership
-
+CREATE TABLE researcher.researcharea
+CREATE TABLE researcher.course
+CREATE TABLE activity.researcherbook
+CREATE TABLE activity.researcher article
+CREATE TABLE activity.articlekeyterms
+CREATE TABLE activity.researcherconferenceactivity
+CREATE TABLE activity.researchermediaappearance
+CREATE TABLE activity.researchercommunityengagement
+CREATE TABLE activity.communitypartnership
 
 -- insert data? 
