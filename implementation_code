@@ -100,10 +100,27 @@ REFERENCES ric.publisher(PublisherID)
 );
 
 CREATE TABLE ric.journal (
+JournalID INT PRIMARY KEY;
+JournalTitle VARCHAR (100) NOT NULL;
+JournalOnlineISSN INT;
+JournalPrintISSN INT;
+PublisherID INT NOT NULL
+REFERENCES ric.publisher(PublisherID)
+);
+
+CREATE TABLE ric.conference (
+ConferenceID INT PRIMARY KEY;
+ConferenceName VARCHAR (100) NOT NULL;
+PrimaryConferenceOrganizer INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+ConferenceStartDate DATE NOT NULL;
+ConferenceEndDate DATE NOT NULL;
+ConferenceLocation VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE ric.mediaappearance (
 
 
-CREATE TABLE ric.conference
-CREATE TABLE ric.mediaappearance
 CREATE TABLE ric.mediapublisher
 CREATE TABLE ric.communitypartner 
 CREATE TABLE ric.communityengagement
