@@ -285,6 +285,31 @@ REFERENCE institution.communitypartner(CommunityPartnerID),
 CONSTRAINT PKEnrollment PRIMARY KEY (CommunityEngagementID, CommunityPartnerID)
 );
 
+-- Fourth Round Code --
+-- Encryption
+CREATE MASTER KEY 
+ENCRYPTION BY PASSWORD = 'RIC1!';
+
+CREATE SYMMETRIC KEY MySymmetricKey
+WITH ALGORITHM = AES_256
+ENCRYPTION BY PASSWORD = 'CBTHFPCAMJT!!';
+
+OPEN SYMMETRIC KEY MySymmetricKey
+DECRYPTION BY PASSWORD = 'CBTHFPCAMJT!!';
+
+UPDATE researcher.researcher 
+SET EncryptedResearcherEmail = EncryptByKey(Key_GUID('MySymmetricKey'), ResearcherEmail);
+
+-Verification
+SELECT ResearcherID, ResearcherFirstName, EncryptedResearcherEmail
+FROM researcher.researcher;
+
+-Decryption When Querying
+SELECT ResearcherID, ResearcherName, 
+CONVERT(VARCHAR(40), DecryptByKey(EncryptedResearcherEmail)) AS DecryptedResearcherEmail
+FROM researcher.researchers;
+
+CLOSE SYMMETRIC KEY MySymmetricKey;
 
 -- create parent tables
 
