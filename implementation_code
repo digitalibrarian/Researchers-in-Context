@@ -22,9 +22,9 @@ ResearcherWebsite VARCHAR (100)
 CREATE TABLE researcher.degree (
 DegreeID INT PRIMARY KEY; 
 ResearcherID INT NOT NULL
-REFERENCES ric.researcher(ResearcherID); 
+REFERENCES researcher.researcher(ResearcherID); 
 InstitutionID INT NOT NULL
-REFERENCES ric.institution(InstitutionID);
+REFERENCES institution.institution(InstitutionID);
 GraduationDate DATE NOT NULL; 
 DegreeLevel VARCHAR (40) NOT NULL; 
 DegreeDiscipline VARCHAR (60) NOT NULL
