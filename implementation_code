@@ -9,26 +9,30 @@ GO
 -- create parent tables
 
 CREATE TABLE researcher.researcher
-CREATE TABLE institution.institution
+
 CREATE TABLE researcher.degree
 CREATE TABLE researcher.position
 CREATE TABLE researcher.funding
 CREATE TABLE researcher.membership
 CREATE TABLE researcher.recognition
+CREATE TABLE researcher.discipline
+CREATE TABLE researcher.subdiscipline
+CREATE TABLE researcher.subjectarea
+
+CREATE TABLE institution.institution
 CREATE TABLE institution.publisher
-CREATE TABLE activity.book
 CREATE TABLE institution.journal
 CREATE TABLE institution.conference
-CREATE TABLE activity.mediaappearance
 CREATE TABLE institution.mediapublisher
-CREATE TABLE institution.communitypartner 
+CREATE TABLE institution.communitypartner
+
+CREATE TABLE activity.book
+CREATE TABLE activity.mediaappearance
 CREATE TABLE activity.communityengagement
 CREATE TABLE activity.conferenceactivity
 CREATE TABLE activity.journalarticle
 CREATE TABLE activity.journalpublication
-CREATE TABLE researcher.discipline
-CREATE TABLE researcher.subdiscipline
-CREATE TABLE researcher.subjectarea
+
 
 -- create child tables
 CREATE TABLE researcher.researcharea
