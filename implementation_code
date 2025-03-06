@@ -161,6 +161,7 @@ REFERENCES institution.mediapublisher(MediaPublisherID),
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 MediaAppearanceType VARCHAR (40) NOT NULL,
+MediaAppearanceTitle VARCHAR (100) NOT NULL,
 MediaAppearanceDate DATE NOT NULL,
 MediaAppearanceDescription VARCHAR (200),
 MediaAppearanceLink VARCHAR (100)
