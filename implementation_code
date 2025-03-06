@@ -8,38 +8,38 @@ GO
 
 -- create parent tables
 
-CREATE TABLE ric.researcher
-CREATE TABLE ric.institution
-CREATE TABLE ric.degree
-CREATE TABLE ric.position
-CREATE TABLE ric.funding
-CREATE TABLE ric.membership
-CREATE TABLE ric.recognition
-CREATE TABLE ric.publisher
-CREATE TABLE ric.book
-CREATE TABLE ric.journal
-CREATE TABLE ric.conference
-CREATE TABLE ric.mediaappearance
-CREATE TABLE ric.mediapublisher
-CREATE TABLE ric.communitypartner 
-CREATE TABLE ric.communityengagement
-CREATE TABLE ric.conferenceactivity
-CREATE TABLE ric.journalarticle
-CREATE TABLE ric.journalpublication
-CREATE TABLE ric.discipline
-CREATE TABLE ric.subdiscipline
-CREATE TABLE ric.subjectarea
+CREATE TABLE researcher.researcher
+CREATE TABLE institution.institution
+CREATE TABLE researcher.degree
+CREATE TABLE researcher.position
+CREATE TABLE researcher.funding
+CREATE TABLE researcher.membership
+CREATE TABLE researcher.recognition
+CREATE TABLE institution.publisher
+CREATE TABLE activity.book
+CREATE TABLE institution.journal
+CREATE TABLE institution.conference
+CREATE TABLE activity.mediaappearance
+CREATE TABLE institution.mediapublisher
+CREATE TABLE institution.communitypartner 
+CREATE TABLE activity.communityengagement
+CREATE TABLE activity.conferenceactivity
+CREATE TABLE activity.journalarticle
+CREATE TABLE activity.journalpublication
+CREATE TABLE researcher.discipline
+CREATE TABLE researcher.subdiscipline
+CREATE TABLE researcher.subjectarea
 
 -- create child tables
-CREATE TABLE ric.researcharea
-CREATE TABLE ric.course
-CREATE TABLE ric.researcherbook
-CREATE TABLE ric.researcher article
-CREATE TABLE ric.articlekeyterms
-CREATE TABLE ric.researcherconferenceactivity
-CREATE TABLE ric.researchermediaappearance
-CREATE TABLE ric.researchercommunityengagement
-CREATE TABLE ric.communitypartnership
+CREATE TABLE researcher.researcharea
+CREATE TABLE researcher.course
+CREATE TABLE activity.researcherbook
+CREATE TABLE activity.researcher article
+CREATE TABLE activity.articlekeyterms
+CREATE TABLE activity.researcherconferenceactivity
+CREATE TABLE activity.researchermediaappearance
+CREATE TABLE activity.researchercommunityengagement
+CREATE TABLE activity.communitypartnership
 
 
 -- insert data? 
