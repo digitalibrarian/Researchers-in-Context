@@ -119,10 +119,28 @@ ConferenceLocation VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE ric.mediaappearance (
+MediaAppearanceID INT PRIMARY KEY;
+MediaPublisherID INT NOT NULL
+REFERENCES ric.mediapublisher(MediaPublisherID);
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+MediaAppearanceType VARCHAR (40) NOT NULL;
+MediaAppearanceDate DATE NOT NULL;
+MediaAppearanceDescription VARCHAR (200);
+MediaAppearanceLink VARCHAR (100)
+);
+
+CREATE TABLE ric.mediapublisher (
+MediaPublisherID INT PRIMARY KEY;
+MediaPublisherName VARCHAR (60) NOT NULL;
+MediaPublisherType VARCHAR (40) NOT NULL;
+InstitutionID INT 
+REFERENCES ric.institution(InstitutionID)
+);
+
+CREATE TABLE ric.communitypartner (
 
 
-CREATE TABLE ric.mediapublisher
-CREATE TABLE ric.communitypartner 
 CREATE TABLE ric.communityengagement
 CREATE TABLE ric.conferenceactivity
 CREATE TABLE ric.journalarticle
