@@ -70,9 +70,15 @@ RecognitionSource INT NOT NULL
 REFERENCES institution.institution(InstitutionID);
 RecognitionName VARCHAR (100) NOT NULL
 );
-CREATE TABLE ric.discipline
-CREATE TABLE ric.subdiscipline
-CREATE TABLE ric.subjectarea
+CREATE TABLE researcher.discipline (
+Discipline VARCHAR (40) PRIMARY KEY
+);
+CREATE TABLE researcher.subdiscipline (
+Subdiscipline VARCHAR (40) PRIMARY KEY
+);
+CREATE TABLE researcher.subjectarea (
+SubjectArea VARCHAR (40) PRIMARY KEY
+);
 
 CREATE TABLE institution.institution (
 InstitutionID INT PRIMARY KEY; 
