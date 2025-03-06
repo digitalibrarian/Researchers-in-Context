@@ -52,13 +52,56 @@ PositionEndDate DATE
 );
 
 CREATE TABLE ric.funding (
+FundingID INT PRIMARY KEY; 
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+InstitutionID INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+FundingName VARCHAR (100) NOT NULL; 
+FundingStartDate DATE NOT NULL; 
+FundingEndDate DATE; 
+FundingAmount MONEY NOT NULL
+);
+
+CREATE TABLE ric.membership (
+MembershipID INT PRIMARY KEY; 
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+InstitutionID INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+Organization/AssociationName VARCHAR (100); 
+MembershipPositionTitle VARCHAR (40) NOT NULL;
+MembershipStartDate DATE NOT NULL;
+MembershipEndDate Date
+);
+
+CREATE TABLE ric.recognition (
+RecognitionID INT PRIMARY KEY;
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+RecognitionSource INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+RecognitionName VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE ric.publisher (
+PublisherID INT PRIMARY KEY;
+InstitutionID INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+PublisherName VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE ric.book (
+BookID INT PRIMARY KEY;
+BookTitle VARCHAR (100) NOT NULL;
+BookPublicationYear DATE NOT NULL;
+PublisherID INT NOT NULL
+REFERENCES ric.publisher(PublisherID)
+);
+
+CREATE TABLE ric.journal (
 
 
-CREATE TABLE ric.membership
-CREATE TABLE ric.recognition
-CREATE TABLE ric.publisher
-CREATE TABLE ric.book
-CREATE TABLE ric.journal
 CREATE TABLE ric.conference
 CREATE TABLE ric.mediaappearance
 CREATE TABLE ric.mediapublisher
