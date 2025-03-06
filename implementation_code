@@ -8,43 +8,79 @@ GO
 
 -- create parent tables
 
-CREATE TABLE researcher.researcher(
+CREATE TABLE ric.researcher (
+ResearcherID INT PRIMARY KEY; 
+ResearcherOrcid ID INT; 
+ResearcherFirstName VARCHAR (40) NOT NULL; 
+ResearcherPreferredFirstName VARCHAR (40); 
+ResearcherMiddleName VARCHAR (40); 
+ResearcherLastName VARCHAR (40) NOT NULL;
+ResearcherEmail VARCHAR (40) NOT NULL; 
+ResearcherWebsite VARCHAR (100)
 );
 
-CREATE TABLE researcher.degree
-CREATE TABLE researcher.position
-CREATE TABLE researcher.funding
-CREATE TABLE researcher.membership
-CREATE TABLE researcher.recognition
-CREATE TABLE researcher.discipline
-CREATE TABLE researcher.subdiscipline
-CREATE TABLE researcher.subjectarea
+CREATE TABLE ric.institution (
+InstitutionID INT PRIMARY KEY; 
+InstitutionType VARCHAR (40) NOT NULL; 
+InstitutionName VARCHAR (60) NOT NULL; 
+City VARCHAR (40) NOT NULL; 
+State/Territory VARCHAR (40) NOT NULL; 
+Country VARCHAR (40) NOT NULL
+);
 
-CREATE TABLE institution.institution
-CREATE TABLE institution.publisher
-CREATE TABLE institution.journal
-CREATE TABLE institution.conference
-CREATE TABLE institution.mediapublisher
-CREATE TABLE institution.communitypartner
+CREATE TABLE ric.degree (
+DegreeID INT PRIMARY KEY; 
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID); 
+InstitutionID INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+GraduationDate DATE NOT NULL; 
+DegreeLevel VARCHAR (40) NOT NULL; 
+DegreeDiscipline VARCHAR (60) NOT NULL
+);
 
-CREATE TABLE activity.book
-CREATE TABLE activity.mediaappearance
-CREATE TABLE activity.communityengagement
-CREATE TABLE activity.conferenceactivity
-CREATE TABLE activity.journalarticle
-CREATE TABLE activity.journalpublication
+CREATE TABLE ric.position (
+PositionID INT PRIMARY KEY; 
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+InstitutionID INT NOT NULL
+REFERENCES ric.institution(InstitutionID);
+PositionTitle VARCHAR (40) NOT NULL;
+PositionType VARCHAR (40) NOT NULL; 
+PositionStartDate DATE NOT NULL; 
+PositionEndDate DATE 
+);
 
+CREATE TABLE ric.funding (
+
+
+CREATE TABLE ric.membership
+CREATE TABLE ric.recognition
+CREATE TABLE ric.publisher
+CREATE TABLE ric.book
+CREATE TABLE ric.journal
+CREATE TABLE ric.conference
+CREATE TABLE ric.mediaappearance
+CREATE TABLE ric.mediapublisher
+CREATE TABLE ric.communitypartner 
+CREATE TABLE ric.communityengagement
+CREATE TABLE ric.conferenceactivity
+CREATE TABLE ric.journalarticle
+CREATE TABLE ric.journalpublication
+CREATE TABLE ric.discipline
+CREATE TABLE ric.subdiscipline
+CREATE TABLE ric.subjectarea
 
 -- create child tables
-CREATE TABLE researcher.researcharea
-CREATE TABLE researcher.course
-CREATE TABLE activity.researcherbook
-CREATE TABLE activity.researcher article
-CREATE TABLE activity.articlekeyterms
-CREATE TABLE activity.researcherconferenceactivity
-CREATE TABLE activity.researchermediaappearance
-CREATE TABLE activity.researchercommunityengagement
-CREATE TABLE activity.communitypartnership
+CREATE TABLE ric.researcharea
+CREATE TABLE ric.course
+CREATE TABLE ric.researcherbook
+CREATE TABLE ric.researcher article
+CREATE TABLE ric.articlekeyterms
+CREATE TABLE ric.researcherconferenceactivity
+CREATE TABLE ric.researchermediaappearance
+CREATE TABLE ric.researchercommunityengagement
+CREATE TABLE ric.communitypartnership
 
 
 -- insert data? 
