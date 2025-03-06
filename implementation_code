@@ -175,7 +175,11 @@ JournalPublicationID INT PRIMARY KEY;
 ArticleID INT NOT NULL
 REFERENCES activity.journalarticle(ArticleID);
 JournalID INT NOT NULL
-REFERENCES ric.
+REFERENCES institution.journal (JournalID);
+ArticleJournalIssue INT NOT NULL;
+ArticleJournalVolume INT NOT NULL;
+JournalPublication DATE NOT NULL
+);
 
 -- create child tables
 CREATE TABLE researcher.researcharea
