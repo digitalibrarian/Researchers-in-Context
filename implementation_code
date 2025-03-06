@@ -6,7 +6,8 @@
 CREATE DATABASE "ResearchersInContext";
 GO
 
--- First Round Code
+-- First Round Code --
+
 CREATE TABLE researcher.researcher (
 ResearcherID INT PRIMARY KEY AUTO_INCREMENT, 
 ResearcherOrcid ID INT,
@@ -45,7 +46,8 @@ ArticleTitle VARCHAR (200) NOT NULL,
 ArticleDOI VARCHAR (100)
 );
 
--- Second Round Code
+-- Second Round Code --
+
 CREATE TABLE researcher.degree (
 DegreeID INT PRIMARY KEY AUTO_INCREMENT, 
 ResearcherID INT NOT NULL
@@ -204,7 +206,8 @@ ArticleJournalVolume INT NOT NULL,
 JournalPublication DATE NOT NULL
 );
 
--- Third Round Code
+-- Third Round Code --
+
 CREATE TABLE researcher.researcharea (
 ResearchAreaID INT PRIMARY KEY AUTO_INCREMENT,
 Discipline VARCHAR (40) NOT NULL 
