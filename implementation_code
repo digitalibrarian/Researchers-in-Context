@@ -139,11 +139,38 @@ REFERENCES ric.institution(InstitutionID)
 );
 
 CREATE TABLE ric.communitypartner (
+CommunityPartnerID INT PRIMARY KEY;
+InstitutionID INT 
+REFERENCES ric.institution(InstitutionID);
+CommunityPartnerName VARCHAR (100) NOT NULL;
+CommunityPartnerDescription VARCHAR (200)
+);
 
+CREATE TABLE ric.communityengagement (
+CommunityEngagementID INT PRIMARY KEY;
+CommunityPartnerID INT 
+REFERENCES ric.communitypartner(CommunityPartnerID);
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+CommunityEngagementType VARCHAR (40) NOT NULL;
+CommunityEngagementStartDate DATE NOT NULL;
+CommunityEngagementEndDate DATE;
+CommunityEngagementDescription VARCHAR (200)
+);
 
-CREATE TABLE ric.communityengagement
-CREATE TABLE ric.conferenceactivity
-CREATE TABLE ric.journalarticle
+CREATE TABLE ric.conferenceactivity (
+ConferenceActivityID INT PRIMARY KEY;
+ConferenceID INT NOT NULL
+REFERENCES ric.conference(ConferenceID);
+ResearcherID INT NOT NULL
+REFERENCES ric.researcher(ResearcherID);
+ConferenceActivityType VARCHAR (40) NOT NULL;
+ConferenceActivityTitle VARCHAR (100) NOT NULL;
+ConferenceActivityDate DATE NOT NULL
+);
+
+CREATE TABLE ric.journalarticle (
+
 CREATE TABLE ric.journalpublication
 CREATE TABLE ric.discipline
 CREATE TABLE ric.subdiscipline
