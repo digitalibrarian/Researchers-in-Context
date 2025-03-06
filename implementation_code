@@ -170,8 +170,18 @@ ConferenceActivityDate DATE NOT NULL
 );
 
 CREATE TABLE ric.journalarticle (
+ArticleID INT PRIMARY KEY;
+ArticleTitle VARCHAR (200) NOT NULL;
+ArticleDOI VARCHAR (100)
+);
 
-CREATE TABLE ric.journalpublication
+CREATE TABLE ric.journalpublication (
+JournalPublicationID INT PRIMARY KEY;
+ArticleID INT NOT NULL
+REFERENCES ric.journalarticle(ArticleID);
+JournalID INT NOT NULL
+REFERENCES ric.
+
 CREATE TABLE ric.discipline
 CREATE TABLE ric.subdiscipline
 CREATE TABLE ric.subjectarea
