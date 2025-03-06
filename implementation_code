@@ -10,7 +10,7 @@ GO
 
 CREATE TABLE researcher.researcher (
 ResearcherID INT PRIMARY KEY AUTO_INCREMENT, 
-ResearcherOrcid ID INT,
+ResearcherOrcidID INT,
 ResearcherFirstName VARCHAR (40) NOT NULL, 
 ResearcherPreferredFirstName VARCHAR (40), 
 ResearcherMiddleName VARCHAR (40),
