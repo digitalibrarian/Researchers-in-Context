@@ -233,7 +233,7 @@ CourseNumber VARCHAR (10) NOT NULL,
 CourseName VARCHAR (100) NOT NULL,
 ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
-CONSTRAINT PKEnrollment PRIMARY KEY (InstitutionID, CourseNumber)
+CONSTRAINT PKCourse PRIMARY KEY (InstitutionID, CourseNumber)
 );
 
 CREATE TABLE activity.researcherbook (
@@ -241,7 +241,7 @@ ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 BookID INT NOT NULL
 REFERENCE activity.book(BookID),
-CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, BookID)
+CONSTRAINT PKResearcherBook PRIMARY KEY (ResearcherID, BookID)
 );
 
 CREATE TABLE activity.researcher article (
@@ -249,14 +249,14 @@ ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 ArticleID INT NOT NULL
 REFERENCE activity.journalarticle(ArticleID),
-CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, ArticleID)
+CONSTRAINT PKResearcherArticle PRIMARY KEY (ResearcherID, ArticleID)
 );
 
 CREATE TABLE activity.articlekeyterms (
 ArticleID INT NOT NULL
 REFERENCE activity.journalarticle(ArticleID),
 ArticleKeyTerm VARCHAR (50) NOT NULL,
-CONSTRAINT PKEnrollment PRIMARY KEY (ArticleID, ArticleKeyTerm)
+CONSTRAINT PKArticleKeyTerms PRIMARY KEY (ArticleID, ArticleKeyTerm)
 );
 
 CREATE TABLE activity.researcherconferenceactivity (
@@ -264,7 +264,7 @@ ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 ConferenceActivityID INT NOT NULL
 REFERENCE activity.conferenceactivity(ConferenceActivityID),
-CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, ConferenceActivityID)
+CONSTRAINT PKResearcherConferenceActivity PRIMARY KEY (ResearcherID, ConferenceActivityID)
 );
 
 CREATE TABLE activity.researchermediaappearance (
@@ -272,7 +272,7 @@ ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 MediaAppearanceID INT NOT NULL
 REFERENCE activity.mediaappearance(MediaAppearanceID),
-CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, MediaAppearanceID)
+CONSTRAINT PKResearcherMediaAppearance PRIMARY KEY (ResearcherID, MediaAppearanceID)
 );
 
 CREATE TABLE activity.researchercommunityengagement (
@@ -280,7 +280,7 @@ ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 CommunityEngagementID INT NOT NULL
 REFERENCE activity.communityengagement(CommunityEngagementID),
-CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, CommunityEngagementID)
+CONSTRAINT PKResearcherCommunityEngagement PRIMARY KEY (ResearcherID, CommunityEngagementID)
 );
 
 CREATE TABLE activity.communitypartnership (
@@ -288,7 +288,7 @@ CommunityEngagementID INT NOT NULL
 REFERENCE activity.communityengagement(CommunityEngagementID),
 CommunityPartnerID INT NOT NULL
 REFERENCE institution.communitypartner(CommunityPartnerID),
-CONSTRAINT PKEnrollment PRIMARY KEY (CommunityEngagementID, CommunityPartnerID)
+CONSTRAINT PKCommunityPartnership PRIMARY KEY (CommunityEngagementID, CommunityPartnerID)
 );
 
 -- Fourth Round Code --
