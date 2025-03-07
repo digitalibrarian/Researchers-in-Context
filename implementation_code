@@ -69,6 +69,7 @@ PositionTitle VARCHAR (100) NOT NULL,
 PositionType VARCHAR (40) NOT NULL, 
 PositionStartDate DATE NOT NULL, 
 PositionEndDate DATE 
+CONSTRAINT chk_start_before_end CHECK (PositionStartDate < PositionEndDate)
 );
 
 CREATE TABLE researcher.funding (
