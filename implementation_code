@@ -81,6 +81,7 @@ REFERENCES instituion.institution(InstitutionID),
 FundingName VARCHAR (100) NOT NULL, 
 FundingStartDate DATE NOT NULL, 
 FundingEndDate DATE, 
+CONSTRAINT chk_start_before_end CHECK (FundingStartDate < FundingEndDate)
 FundingAmount MONEY NOT NULL
 );
 
@@ -94,6 +95,7 @@ MembershipName VARCHAR (100),
 MembershipPositionTitle VARCHAR (40) NOT NULL,
 MembershipStartDate DATE NOT NULL,
 MembershipEndDate Date
+CONSTRAINT chk_start_before_end CHECK (MembershipStartDate < MembershipEndDate)
 );
 
 CREATE TABLE researcher.recognition (
@@ -128,6 +130,7 @@ PrimaryConferenceOrganizer INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
 ConferenceStartDate DATE NOT NULL,
 ConferenceEndDate DATE NOT NULL,
+CONSTRAINT chk_start_before_end CHECK (ConferenceStartDate < ConferenceEndDate)
 ConferenceLocation VARCHAR (100) NOT NULL
 );
 
@@ -177,6 +180,7 @@ REFERENCES researcher.researcher(ResearcherID),
 CommunityEngagementType VARCHAR (40) NOT NULL,
 CommunityEngagementStartDate DATE NOT NULL,
 CommunityEngagementEndDate DATE,
+CONSTRAINT chk_start_before_end CHECK (CommunityEngagementStartDate < CommunityEngagementEndDate)
 CommunityEngagementDescription VARCHAR (200)
 );
 
