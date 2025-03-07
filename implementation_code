@@ -65,7 +65,7 @@ ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
-PositionTitle VARCHAR (40) NOT NULL,
+PositionTitle VARCHAR (100) NOT NULL,
 PositionType VARCHAR (40) NOT NULL, 
 PositionStartDate DATE NOT NULL, 
 PositionEndDate DATE 
