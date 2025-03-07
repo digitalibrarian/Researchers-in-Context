@@ -36,7 +36,7 @@ InstitutionID INT PRIMARY KEY AUTO_INCREMENT,
 InstitutionType VARCHAR (40) NOT NULL, 
 InstitutionName VARCHAR (60) NOT NULL, 
 City VARCHAR (40) NOT NULL, 
-State/Territory VARCHAR (40) NOT NULL, 
+State VARCHAR (40) NOT NULL, 
 Country VARCHAR (40) NOT NULL
 );
 
@@ -54,7 +54,7 @@ ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID), 
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
-GraduationDate DATE NOT NULL, 
+GraduationDate DATE, 
 DegreeLevel VARCHAR (40) NOT NULL, 
 DegreeDiscipline VARCHAR (60) NOT NULL
 );
@@ -89,7 +89,7 @@ ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
-Organization/AssociationName VARCHAR (100),
+MembershipName VARCHAR (100),
 MembershipPositionTitle VARCHAR (40) NOT NULL,
 MembershipStartDate DATE NOT NULL,
 MembershipEndDate Date
@@ -363,7 +363,7 @@ ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID);
-Organization/AssociationName VARCHAR (100); 
+MembershipName VARCHAR (100); 
 MembershipPositionTitle VARCHAR (40) NOT NULL;
 MembershipStartDate DATE NOT NULL;
 MembershipEndDate Date
@@ -391,7 +391,7 @@ InstitutionID INT PRIMARY KEY AUTO_INCREMENT;
 InstitutionType VARCHAR (40) NOT NULL; 
 InstitutionName VARCHAR (60) NOT NULL; 
 City VARCHAR (40) NOT NULL; 
-State/Territory VARCHAR (40) NOT NULL; 
+State VARCHAR (40) NOT NULL; 
 Country VARCHAR (40) NOT NULL
 );
 CREATE TABLE institution.publisher (
