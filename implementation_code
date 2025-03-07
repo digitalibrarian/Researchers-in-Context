@@ -202,8 +202,8 @@ ArticleID INT NOT NULL
 REFERENCES activity.journalarticle(ArticleID),
 JournalID INT NOT NULL
 REFERENCES institution.journal (JournalID),
-ArticleJournalIssue INT NOT NULL,
-ArticleJournalVolume INT NOT NULL,
+JournalPublicationIssue INT NOT NULL,
+JournalPublicationVolume INT NOT NULL,
 JournalPublication DATE NOT NULL
 );
 
