@@ -263,7 +263,7 @@ REFERENCE activity.conferenceactivity(ConferenceActivityID),
 CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, ConferenceActivityID)
 );
 
-CREATE TABLE activity.researchermediaappearance
+CREATE TABLE activity.researchermediaappearance (
 ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 MediaAppearanceID INT NOT NULL
@@ -271,7 +271,7 @@ REFERENCE activity.mediaappearance(MediaAppearanceID),
 CONSTRAINT PKEnrollment PRIMARY KEY (ResearcherID, MediaAppearanceID)
 );
 
-CREATE TABLE activity.researchercommunityengagement
+CREATE TABLE activity.researchercommunityengagement (
 ResearcherID INT NOT NULL
 REFERENCE researcher.researcher(ResearcherID),
 CommunityEngagementID INT NOT NULL
