@@ -32,7 +32,7 @@ SubjectArea VARCHAR (100) PRIMARY KEY
 );
 
 CREATE TABLE institution.institution (
-InstitutionID INT PRIMARY KEY AUTO_INCREMENT, 
+InstitutionID INT IDENTITY(1,1) PRIMARY KEY, 
 InstitutionType VARCHAR (40) NOT NULL, 
 InstitutionName VARCHAR (60) NOT NULL, 
 City VARCHAR (40) NOT NULL, 
@@ -41,7 +41,7 @@ Country VARCHAR (40) NOT NULL
 );
 
 CREATE TABLE activity.journalarticle (
-ArticleID INT PRIMARY KEY AUTO_INCREMENT,
+ArticleID INT IDENTITY(1,1) PRIMARY KEY,
 ArticleTitle VARCHAR (200) NOT NULL,
 ArticleDOI VARCHAR (100)
 );
