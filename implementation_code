@@ -317,6 +317,11 @@ FROM researcher.researchers;
 
 CLOSE SYMMETRIC KEY MySymmetricKey;
 
+
+
+
+-- IS THIS OLD CODE? -- 
+
 -- create parent tables
 
 CREATE TABLE researcher.researcher (
