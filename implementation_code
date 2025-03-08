@@ -49,7 +49,7 @@ ArticleDOI VARCHAR (100)
 -- Second Round Code --
 
 CREATE TABLE researcher.degree (
-DegreeID INT PRIMARY KEY AUTO_INCREMENT, 
+DegreeID INT IDENTITY(1,1) PRIMARY KEY, 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID), 
 InstitutionID INT NOT NULL
@@ -60,7 +60,7 @@ DegreeDiscipline VARCHAR (60) NOT NULL
 );
 
 CREATE TABLE researcher.position (
-PositionID INT PRIMARY KEY AUTO_INCREMENT, 
+PositionID INT IDENTITY(1,1) PRIMARY KEY, 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 InstitutionID INT NOT NULL
@@ -73,7 +73,7 @@ CONSTRAINT chk_start_before_end CHECK (PositionStartDate < PositionEndDate)
 );
 
 CREATE TABLE researcher.funding (
-FundingID INT PRIMARY KEY AUTO_INCREMENT, 
+FundingID INT IDENTITY(1,1) PRIMARY KEY, 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 InstitutionID INT NOT NULL
@@ -86,7 +86,7 @@ FundingAmount MONEY NOT NULL
 );
 
 CREATE TABLE researcher.membership (
-MembershipID INT PRIMARY KEY AUTO_INCREMENT, 
+MembershipID INT IDENTITY(1,1) PRIMARY KEY, 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 InstitutionID INT NOT NULL
@@ -99,7 +99,7 @@ CONSTRAINT chk_start_before_end CHECK (MembershipStartDate < MembershipEndDate)
 );
 
 CREATE TABLE researcher.recognition (
-RecognitionID INT PRIMARY KEY AUTO_INCREMENT,
+RecognitionID INT IDENTITY(1,1) PRIMARY KEY,
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID),
 RecognitionSource INT NOT NULL
@@ -108,14 +108,14 @@ RecognitionName VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE institution.publisher (
-PublisherID INT PRIMARY KEY AUTO_INCREMENT,
+PublisherID INT IDENTITY(1,1) PRIMARY KEY,
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
 PublisherName VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE institution.journal (
-JournalID INT PRIMARY KEY AUTO_INCREMENT,
+JournalID INT IDENTITY(1,1) PRIMARY KEY,
 JournalTitle VARCHAR (100) NOT NULL,
 JournalOnlineISSN INT,
 JournalPrintISSN INT,
@@ -124,7 +124,7 @@ REFERENCES institution.publisher(PublisherID)
 );
 
 CREATE TABLE institution.conference (
-ConferenceID INT PRIMARY KEY AUTO_INCREMENT,
+ConferenceID INT IDENTITY(1,1) PRIMARY KEY,
 ConferenceName VARCHAR (100) NOT NULL,
 PrimaryConferenceOrganizer INT NOT NULL
 REFERENCES institution.institution(InstitutionID),
@@ -135,7 +135,7 @@ ConferenceLocation VARCHAR (100) NOT NULL
 );
 
 CREATE TABLE institution.mediapublisher (
-MediaPublisherID INT PRIMARY KEY AUTO_INCREMENT,
+MediaPublisherID INT IDENTITY(1,1) PRIMARY KEY,
 MediaPublisherName VARCHAR (60) NOT NULL,
 MediaPublisherType VARCHAR (40) NOT NULL,
 InstitutionID INT 
@@ -143,7 +143,7 @@ REFERENCES researcher.institution(InstitutionID)
 );
 
 CREATE TABLE institution.communitypartner (
-CommunityPartnerID INT PRIMARY KEY AUTO_INCREMENT,
+CommunityPartnerID INT IDENTITY(1,1) PRIMARY KEY,
 InstitutionID INT 
 REFERENCES institution.institution(InstitutionID),
 CommunityPartnerName VARCHAR (100) NOT NULL,
@@ -151,7 +151,7 @@ CommunityPartnerDescription VARCHAR (200)
 );
 
 CREATE TABLE activity.book (
-BookID INT PRIMARY KEY AUTO_INCREMENT,
+BookID INT IDENTITY(1,1) PRIMARY KEY,
 BookTitle VARCHAR (100) NOT NULL,
 BookPublicationYear DATE NOT NULL,
 PublisherID INT NOT NULL
@@ -159,7 +159,7 @@ REFERENCES institution.publisher(PublisherID)
 );
 
 CREATE TABLE activity.mediaappearance (
-MediaAppearanceID INT PRIMARY KEY AUTO_INCREMENT,
+MediaAppearanceID INT IDENTITY(1,1) PRIMARY KEY,
 MediaPublisherID INT NOT NULL
 REFERENCES institution.mediapublisher(MediaPublisherID),
 ResearcherID INT NOT NULL
@@ -172,7 +172,7 @@ MediaAppearanceLink VARCHAR (100)
 );
 
 CREATE TABLE activity.communityengagement (
-CommunityEngagementID INT PRIMARY KEY AUTO_INCREMENT,
+CommunityEngagementID INT IDENTITY(1,1) PRIMARY KEY,
 CommunityPartnerID INT 
 REFERENCES institution.communitypartner(CommunityPartnerID),
 ResearcherID INT NOT NULL
@@ -185,7 +185,7 @@ CommunityEngagementDescription VARCHAR (200)
 );
 
 CREATE TABLE activity.conferenceactivity (
-ConferenceActivityID INT PRIMARY KEY AUTO_INCREMENT,
+ConferenceActivityID INT IDENTITY(1,1) PRIMARY KEY,
 ConferenceID INT NOT NULL
 REFERENCES institution.conference(ConferenceID),
 ResearcherID INT NOT NULL
@@ -196,13 +196,13 @@ ConferenceActivityDate DATE NOT NULL
 );
 
 CREATE TABLE activity.journalarticle (
-ArticleID INT PRIMARY KEY AUTO_INCREMENT,
+ArticleID INT IDENTITY(1,1) PRIMARY KEY,
 ArticleTitle VARCHAR (200) NOT NULL,
 ArticleDOI VARCHAR (100)
 );
 
 CREATE TABLE activity.journalpublication (
-JournalPublicationID INT PRIMARY KEY AUTO_INCREMENT,
+JournalPublicationID INT IDENTITY(1,1) PRIMARY KEY,
 ArticleID INT NOT NULL
 REFERENCES activity.journalarticle(ArticleID),
 JournalID INT NOT NULL
@@ -215,7 +215,7 @@ JournalPublication DATE NOT NULL
 -- Third Round Code --
 
 CREATE TABLE researcher.researcharea (
-ResearchAreaID INT PRIMARY KEY AUTO_INCREMENT,
+ResearchAreaID INT IDENTITY(1,1) PRIMARY KEY,
 Discipline VARCHAR (40) NOT NULL 
 REFERENCE researcher.discipline(Discipline),
 Subdiscipline VARCHAR (40)
@@ -320,7 +320,7 @@ CLOSE SYMMETRIC KEY MySymmetricKey;
 -- create parent tables
 
 CREATE TABLE researcher.researcher (
-ResearcherID INT PRIMARY KEY AUTO_INCREMENT; 
+ResearcherID INT IDENTITY(1,1) PRIMARY KEY; 
 ResearcherOrcid ID INT; 
 ResearcherFirstName VARCHAR (40) NOT NULL; 
 ResearcherPreferredFirstName VARCHAR (40); 
@@ -331,7 +331,7 @@ ResearcherWebsite VARCHAR (100)
 );
 
 CREATE TABLE researcher.degree (
-DegreeID INT PRIMARY KEY AUTO_INCREMENT; 
+DegreeID INT IDENTITY(1,1) PRIMARY KEY; 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID); 
 InstitutionID INT NOT NULL
@@ -341,7 +341,7 @@ DegreeLevel VARCHAR (40) NOT NULL;
 DegreeDiscipline VARCHAR (60) NOT NULL
 );
 CREATE TABLE researcher.position (
-PositionID INT PRIMARY KEY AUTO_INCREMENT; 
+PositionID INT IDENTITY(1,1) PRIMARY KEY; 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
@@ -352,7 +352,7 @@ PositionStartDate DATE NOT NULL;
 PositionEndDate DATE 
 );
 CREATE TABLE researcher.funding (
-FundingID INT PRIMARY KEY AUTO_INCREMENT; 
+FundingID INT IDENTITY(1,1) PRIMARY KEY; 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
@@ -363,7 +363,7 @@ FundingEndDate DATE;
 FundingAmount MONEY NOT NULL
 );
 CREATE TABLE researcher.membership (
-MembershipID INT PRIMARY KEY AUTO_INCREMENT; 
+MembershipID INT IDENTITY(1,1) PRIMARY KEY; 
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID);
 InstitutionID INT NOT NULL
@@ -374,7 +374,7 @@ MembershipStartDate DATE NOT NULL;
 MembershipEndDate Date
 );
 CREATE TABLE researcher.recognition (
-RecognitionID INT PRIMARY KEY AUTO_INCREMENT;
+RecognitionID INT IDENTITY(1,1) PRIMARY KEY;
 ResearcherID INT NOT NULL
 REFERENCES researcher.researcher(ResearcherID);
 RecognitionSource INT NOT NULL
@@ -392,7 +392,7 @@ SubjectArea VARCHAR (100) PRIMARY KEY
 );
 
 CREATE TABLE institution.institution (
-InstitutionID INT PRIMARY KEY AUTO_INCREMENT; 
+InstitutionID INT IDENTITY(1,1) PRIMARY KEY; 
 InstitutionType VARCHAR (40) NOT NULL; 
 InstitutionName VARCHAR (60) NOT NULL; 
 City VARCHAR (40) NOT NULL; 
@@ -400,13 +400,13 @@ State VARCHAR (40) NOT NULL;
 Country VARCHAR (40) NOT NULL
 );
 CREATE TABLE institution.publisher (
-PublisherID INT PRIMARY KEY AUTO_INCREMENT;
+PublisherID INT IDENTITY(1,1) PRIMARY KEY;
 InstitutionID INT NOT NULL
 REFERENCES institution.institution(InstitutionID);
 PublisherName VARCHAR (100) NOT NULL
 );
 CREATE TABLE institution.journal (
-JournalID INT PRIMARY KEY AUTO_INCREMENT;
+JournalID INT IDENTITY(1,1) PRIMARY KEY;
 JournalTitle VARCHAR (100) NOT NULL;
 JournalOnlineISSN INT;
 JournalPrintISSN INT;
@@ -414,7 +414,7 @@ PublisherID INT NOT NULL
 REFERENCES institution.publisher(PublisherID)
 );
 CREATE TABLE institution.conference (
-ConferenceID INT PRIMARY KEY AUTO_INCREMENT;
+ConferenceID INT IDENTITY(1,1) PRIMARY KEY;
 ConferenceName VARCHAR (100) NOT NULL;
 PrimaryConferenceOrganizer INT NOT NULL
 REFERENCES institution.institution(InstitutionID);
@@ -423,14 +423,14 @@ ConferenceEndDate DATE NOT NULL;
 ConferenceLocation VARCHAR (100) NOT NULL
 );
 CREATE TABLE institution.mediapublisher (
-MediaPublisherID INT PRIMARY KEY AUTO_INCREMENT;
+MediaPublisherID INT IDENTITY(1,1) PRIMARY KEY;
 MediaPublisherName VARCHAR (60) NOT NULL;
 MediaPublisherType VARCHAR (40) NOT NULL;
 InstitutionID INT 
 REFERENCES researcher.institution(InstitutionID)
 );
 CREATE TABLE institution.communitypartner (
-CommunityPartnerID INT PRIMARY KEY AUTO_INCREMENT;
+CommunityPartnerID INT IDENTITY(1,1) PRIMARY KEY;
 InstitutionID INT 
 REFERENCES institution.institution(InstitutionID);
 CommunityPartnerName VARCHAR (100) NOT NULL;
@@ -438,14 +438,14 @@ CommunityPartnerDescription VARCHAR (200)
 );
 
 CREATE TABLE activity.book (
-BookID INT PRIMARY KEY AUTO_INCREMENT;
+BookID INT IDENTITY(1,1) PRIMARY KEY;
 BookTitle VARCHAR (100) NOT NULL;
 BookPublicationYear DATE NOT NULL;
 PublisherID INT NOT NULL
 REFERENCES institution.publisher(PublisherID)
 );
 CREATE TABLE activity.mediaappearance (
-MediaAppearanceID INT PRIMARY KEY AUTO_INCREMENT;
+MediaAppearanceID INT IDENTITY(1,1) PRIMARY KEY;
 MediaPublisherID INT NOT NULL
 REFERENCES institution.mediapublisher(MediaPublisherID);
 ResearcherID INT NOT NULL
@@ -456,7 +456,7 @@ MediaAppearanceDescription VARCHAR (200);
 MediaAppearanceLink VARCHAR (100)
 );
 CREATE TABLE activity.communityengagement (
-CommunityEngagementID INT PRIMARY KEY AUTO_INCREMENT;
+CommunityEngagementID INT IDENTITY(1,1) PRIMARY KEY;
 CommunityPartnerID INT 
 REFERENCES institution.communitypartner(CommunityPartnerID);
 ResearcherID INT NOT NULL
@@ -467,7 +467,7 @@ CommunityEngagementEndDate DATE;
 CommunityEngagementDescription VARCHAR (200)
 );
 CREATE TABLE activity.conferenceactivity (
-ConferenceActivityID INT PRIMARY KEY AUTO_INCREMENT;
+ConferenceActivityID INT IDENTITY(1,1) PRIMARY KEY;
 ConferenceID INT NOT NULL
 REFERENCES institution.conference(ConferenceID);
 ResearcherID INT NOT NULL
@@ -477,12 +477,12 @@ ConferenceActivityTitle VARCHAR (100) NOT NULL;
 ConferenceActivityDate DATE NOT NULL
 );
 CREATE TABLE activity.journalarticle (
-ArticleID INT PRIMARY KEY AUTO_INCREMENT;
+ArticleID INT IDENTITY(1,1) PRIMARY KEY;
 ArticleTitle VARCHAR (200) NOT NULL;
 ArticleDOI VARCHAR (100)
 );
 CREATE TABLE activity.journalpublication (
-JournalPublicationID INT PRIMARY KEY AUTO_INCREMENT;
+JournalPublicationID INT IDENTITY(1,1) PRIMARY KEY;
 ArticleID INT NOT NULL
 REFERENCES activity.journalarticle(ArticleID);
 JournalID INT NOT NULL
