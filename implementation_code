@@ -9,7 +9,7 @@ GO
 -- First Round Code --
 
 CREATE TABLE researcher.researcher (
-ResearcherID INT PRIMARY KEY AUTO_INCREMENT, 
+ResearcherID INT IDENTITY(1,1) PRIMARY KEY, 
 ResearcherOrcidID INT,
 ResearcherFirstName VARCHAR (40) NOT NULL, 
 ResearcherPreferredFirstName VARCHAR (40), 
