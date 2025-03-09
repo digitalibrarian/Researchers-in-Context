@@ -1,4 +1,3 @@
-CREATE VIEW [Funding] AS 
-SELECT FundingName, FundingAmount, InstitutionID
-FROM researcher.funding;
-
+CREATE VIEW [Institution] AS 
+SELECT InstitutionName, InstitutionType
+FROM institution.institution; 
