@@ -363,6 +363,7 @@ FROM researcher.researchers;
 
 CLOSE SYMMETRIC KEY MySymmetricKey;
 
+-- VIEWS are included below
 
 /*The first view allows us to see a table with subset of important information about each institution, specifically the name, type, and location. */
 
