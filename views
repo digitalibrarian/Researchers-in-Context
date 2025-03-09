@@ -2,7 +2,7 @@
 
 
 CREATE VIEW [Institution] AS 
-SELECT InstitutionName, InstitutionType, City, Country
+SELECT InstitutionName "Institution Name", InstitutionType "Institution Type", City, Country
 FROM institution.institution
 
 
