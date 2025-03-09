@@ -1,16 +1,30 @@
 -- LIS 543: Database Implementation
 -- Chlöe Brew, Taylor Hazan, Amanda Mitchel, Fer Palomares Carranco, Jet To
 
--- create database
+/* Database set up for the project. 
+Step 1 CREATE database; 
+Step 2 USE database; 
+Step 3 GO */
+
+-- CREATE database
 
 CREATE DATABASE "ResearchersInContext";
 
--- use database
+-- USE database
 
 USE "ResearchersInContext";
 GO
 
--- create schemas
+
+/* CREATE your schemas.
+Step 1 CREATE SCHEMA researcher; 
+Step 2 add GO;
+Step 3 CREATE SCHEMA institution;
+Step 4 add GO;
+Step 5 CREATE SCHEMA activity;
+Step 6 add GO */
+  
+-- CREATE schemas
 
 CREATE SCHEMA researcher;
 GO
@@ -21,7 +35,15 @@ GO
 CREATE SCHEMA activity;
 GO
 
-
+/* CREATE your parent tables.
+Step 1 CREATE TABLE researcher; 
+Step 2 indicate name of schema and table;
+Step 3 add column name;
+Step 4 data type and character strings of varying length if applicable;
+STEP 5 auto generated PKs;
+STEP 6 and PKs where relevant
+STEP 7 ensure to close section and add ";" */
+  
 -- creating parent tables
 
 CREATE TABLE researcher.researcher (
