@@ -1,6 +1,12 @@
+
+
+
 CREATE VIEW [Institution] AS 
 SELECT InstitutionName, InstitutionType, City, Country
 FROM institution.institution
+
+
+
 
 CREATE VIEW "Funding View"
 AS
