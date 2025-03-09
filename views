@@ -1,3 +1,13 @@
 CREATE VIEW [Institution] AS 
 SELECT InstitutionName, InstitutionType, City, Country
 FROM institution.institution
+
+CREATE VIEW "Funding View"
+AS
+SELECT TOP 15 rf.FundingName, rf.FundingAmount, CAST (rf.FundingStartDate AS Date) "Funding Start Date", 
+CAST (rf.FundingEndDate AS Date) "Funding End Date", rr.ResearcherLastName "Researcher Last Name", rr.ResearcherFirstName "Researcher First Name"
+FROM researcher.funding rf
+INNER JOIN Researcher.researcher rr
+ON rr.researcherID =rf.researcherID
+GROUP BY rf.ResearcherID, rf.FundingName, rf.FundingAmount, rf.FundingStartDate, rf.FundingEndDate, rr.ResearcherLastName, rr.ResearcherFirstName
+ORDER BY rf.FundingAmount desc;
