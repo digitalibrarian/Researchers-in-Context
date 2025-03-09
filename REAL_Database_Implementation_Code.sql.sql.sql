@@ -362,3 +362,24 @@ CONVERT(VARCHAR(40), DecryptByKey(EncryptedResearcherEmail)) AS DecryptedResearc
 FROM researcher.researchers;
 
 CLOSE SYMMETRIC KEY MySymmetricKey;
+
+
+/*The first view allows us to see a table with subset of important information about each institution, specifically the name, type, and location. */
+
+CREATE VIEW [Institution] AS 
+SELECT InstitutionName "Institution Name", InstitutionType "Institution Type", City, Country
+FROM institution.institution
+
+/*The second view is a table showing the funding recieved by researchers, this includes the funding name, funding institution, amount, start and end date, and the name of the researcher awarded. It could be used by database users to track funding sources and discover new funding streams for research.*/ 
+
+CREATE VIEW "Funding View"
+AS
+SELECT TOP 15 rf.FundingName "Name of Funding",  ii.InstitutionName "Funding Institution", rf.FundingAmount "Amount", CAST (rf.FundingStartDate AS Date) "Funding Start Date", 
+CAST (rf.FundingEndDate AS Date) "Funding End Date", rr.ResearcherLastName "Researcher Last Name", rr.ResearcherFirstName "Researcher First Name"
+FROM researcher.funding rf
+INNER JOIN Researcher.researcher rr
+ON rr.researcherID =rf.researcherID
+INNER JOIN institution.institution ii
+ON ii.InstitutionID = rf.InstitutionID
+GROUP BY rf.ResearcherID, rf.FundingName, ii.InstitutionName, rf.FundingAmount, rf.FundingStartDate, rf.FundingEndDate, rr.ResearcherLastName, rr.ResearcherFirstName
+ORDER BY rf.FundingAmount desc;
