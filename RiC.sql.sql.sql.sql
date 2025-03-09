@@ -89,9 +89,9 @@ ArticleDOI VARCHAR (100)
 -- importing data for the above tables using the DBeaver Import Wizard --
 
 /* IMPORT INSTRUCTIONS
-We manually created our data in a shared spreadsheet, then downloaded the tabs as individual .csv files to import using the DBeaver Import Wizard. 
-In the spreadsheet, we added extra rows to indicate data type and any relevant constraints. 
-When we downloaded the .csv files, we deleted these rows so that they only had the data we needed to import.
+We manually created our data in a shared spreadsheet. In the spreadsheet, we added extra rows to indicate data type and any relevant constraints. 
+We then downloaded the tabs as individual .csv files and deleted irrelevant columns so that the files only had the data we needed to import. 
+We then imported files using the DBeaver Import Wizard. 
 */
 
 -- first round of child tables (have FKs in parent tables)
