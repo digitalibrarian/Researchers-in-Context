@@ -16,7 +16,8 @@ USE "ResearchersInContext";
 GO
 
 
-/* CREATE your schemas.
+/* CREATE the schemas.
+We wanted to have multiple schemas in order to manage our large number of entities.
 Step 1 CREATE SCHEMA researcher; 
 Step 2 add GO;
 Step 3 CREATE SCHEMA institution;
@@ -35,7 +36,8 @@ GO
 CREATE SCHEMA activity;
 GO
 
-/* CREATE your parent tables.
+/* CREATE the parent tables.
+These are the core entities that we build all of our associative entities off of.
 Step 1 CREATE TABLE researcher; 
 Step 2 indicate name of schema and table;
 Step 3 add column name;
@@ -65,8 +67,6 @@ CREATE TABLE researcher.subdiscipline (
 Subdiscipline VARCHAR (40) PRIMARY KEY 
 );
 
-DROP TABLE researcher.subdiscipline;
-
 CREATE TABLE researcher.subjectarea (
 SubjectArea VARCHAR (100) PRIMARY KEY  
 );
@@ -88,9 +88,24 @@ ArticleDOI VARCHAR (100)
 
 -- importing data for the above tables using the DBeaver Import Wizard --
 
-/* Write out the importing description here!*/
+/* IMPORT INSTRUCTIONS
+We manually created our data in a shared spreadsheet, then downloaded the tabs as individual .csv files to import using the DBeaver Import Wizard. 
+In the spreadsheet, we added extra rows to indicate data type and any relevant constraints. 
+When we downloaded the .csv files, we deleted these rows so that they only had the data we needed to import.
+*/
 
 -- first round of child tables (have FKs in parent tables)
+
+/* CREATE the first round of child tables.
+These are the child entities that branch off of the initial parent tables. 
+Many of them are also parent tables for other associative entities.
+Step 1 CREATE TABLE; 
+Step 2 indicate name of schema and table;
+Step 3 add column name;
+Step 4 data type and character strings of varying length if applicable;
+STEP 5 auto generated PKs;
+STEP 6 and PKs where relevant
+STEP 7 ensure to close section and add ";" */
 
 CREATE TABLE researcher.degree (
 DegreeID INT IDENTITY(1,1) PRIMARY KEY, 
@@ -127,6 +142,8 @@ FundingEndDate DATE,
 CONSTRAINT chk_start_before_end CHECK (FundingStartDate < FundingEndDate),
 FundingAmount MONEY NOT NULL
 );
+
+-- We decided to implement CHECKs to ensure that start dates occur before end dates.
 
 CREATE TABLE researcher.membership (
 MembershipID INT IDENTITY(1,1) PRIMARY KEY, 
@@ -175,6 +192,8 @@ ConferenceEndDate DATE NOT NULL,
 CONSTRAINT chk_start_before_end CHECK (ConferenceStartDate < ConferenceEndDate),
 ConferenceLocation VARCHAR (100) NOT NULL
 );
+
+-- We decided to implement CHECKs to ensure that start dates occur before end dates.
 
 CREATE TABLE institution.mediapublisher (
 MediaPublisherID INT IDENTITY(1,1) PRIMARY KEY,
@@ -226,6 +245,8 @@ CONSTRAINT chk_start_before_end CHECK (CommunityEngagementStartDate < CommunityE
 CommunityEngagementDescription VARCHAR (200)
 );
 
+-- We decided to implement CHECKs to ensure that start dates occur before end dates.
+
 CREATE TABLE activity.conferenceactivity (
 ConferenceActivityID INT IDENTITY(1,1) PRIMARY KEY,
 ConferenceID INT NOT NULL
@@ -248,7 +269,27 @@ JournalPublicationVolume INT NOT NULL,
 JournalPublicationDate DATE NOT NULL
 );
 
+-- import data for these tables using DBeaver Import Wizard
+
+/* IMPORT INSTRUCTIONS
+We manually created our data in a shared spreadsheet, then downloaded the tabs as individual .csv files to import using the DBeaver Import Wizard. 
+In the spreadsheet, we added extra rows to indicate data type and any relevant constraints. 
+We did have to populate FK columns using the generated PKs from our parent tables.  
+When we downloaded the .csv files, we deleted these rows so that they only had the data we needed to import.
+*/
+
 -- third round upload | second round of child tables (FKs in recently-created tables)
+
+/* CREATE the second round of child tables.
+These are the child entities that branch off of the first round of child tables. 
+Many of them are also parent tables for other associative entities.
+Step 1 CREATE TABLE; 
+Step 2 indicate name of schema and table;
+Step 3 add column name;
+Step 4 data type and character strings of varying length if applicable;
+STEP 5 auto generated PKs;
+STEP 6 and PKs where relevant
+STEP 7 ensure to close section and add ";" */
 
 CREATE TABLE researcher.researcharea (
 ResearchAreaID INT IDENTITY(1,1) PRIMARY KEY,
@@ -331,8 +372,6 @@ REFERENCES activity.communityengagement(CommunityEngagementID),
 CONSTRAINT PKResearcherCommunityEngagement PRIMARY KEY (ResearcherID, CommunityEngagementID)
 );
 
-DROP TABLE activity.researchercommunityengagement;
-
 CREATE TABLE activity.communitypartnership (
 CommunityEngagementID INT NOT NULL
 REFERENCES activity.communityengagement(CommunityEngagementID),
@@ -341,7 +380,17 @@ REFERENCES institution.communitypartner(CommunityPartnerID),
 CONSTRAINT PKCommunityPartnership PRIMARY KEY (CommunityEngagementID, CommunityPartnerID)
 );
 
+-- import data using DBeaver Import Wizard
+
+/* IMPORT INSTRUCTIONS
+We manually created our data in a shared spreadsheet, then downloaded the tabs as individual .csv files to import using the DBeaver Import Wizard. 
+In the spreadsheet, we added extra rows to indicate data type and any relevant constraints. 
+We did have to populate FK columns using the generated PKs from our parent tables from the two previous rounds.  
+When we downloaded the .csv files, we deleted these rows so that they only had the data we needed to import.
+*/
+
 -- fourth round of coding - encryption
+/* We decided to encrypt the ResearcherEmail column for basic security reasons.*/
 
 -- Encryption
 CREATE MASTER KEY 
