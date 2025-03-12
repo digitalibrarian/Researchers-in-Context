@@ -1,0 +1,1 @@
+The purpose of this database is to allow academic researchers to share information about their research and professional trajectories with the public through a centralized resource in order to illuminate the web of connections that exist across academic disciplines and scholarly publishing.
